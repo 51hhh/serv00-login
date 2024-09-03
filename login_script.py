@@ -7,7 +7,7 @@ import random
 import requests
 import os
 
-# 从环境变量中获取 Telegram Bot Token 和 Chat ID
+# 从环境变量中获取 
 WEBHOOK = os.getenv('WEBHOOK')
 YOUR_KEY = os.getenv('YOUR_KEY')
 URL = os.getenv('URL')
