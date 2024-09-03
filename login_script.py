@@ -110,6 +110,11 @@ async def send_telegram_message(message):
     payload = f"key={YOUR_KEY}&webhook={WEBHOOK}&message={message}"
     
     headers = {
+        'User-Agent': 'Apifox/1.0.0 (https://apifox.com)'
+        'Accept': '*/*'
+        'Host'：'	ip.ziyourufeng.eu.org:2000'
+        'Accept-Encoding':'gzip, deflate, br'
+        'Connection':'keep-alive'
         'Content-Type': 'application/json'
     }
     try:
