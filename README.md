@@ -1,13 +1,9 @@
 ## serv00与ct8自动化批量保号，每3天自动登录一次面板，并且发送消息到Telegram
 
-## 视频教程看这里
-[免费白嫖10年VPS服务器serv00 并且一键部署自己的专属自建Vless节点 ｜小白教程｜自动化批量保号](https://youtu.be/QnlzpvDl_mo)
-
 利用github Action以及python脚本实现
 
 🙏🙏🙏点个Star！！Star！！Star！！
 
-交流群：https://t.me/yxjsjl
 
 ### 将代码fork到你的仓库并运行的操作步骤
 
@@ -21,10 +17,8 @@
 
 #### 2. 设置 GitHub Secrets
 
-1. **创建 Telegram Bot**
-    - 在 Telegram 中找到 `@BotFather`，创建一个新 Bot，并获取 API Token。
-    - 获取到你的 Chat ID 方法一，在[一休技术交流群](https://t.me/yxjsjl)里发送`/id@KinhRoBot`获取，返回用户信息中的`ID`就是Chat ID
-    - 获取到你的 Chat ID 方法二，可以通过向 Bot 发送一条消息，然后访问 `https://api.telegram.org/bot<your_bot_token>/getUpdates` 找到 Chat ID。
+1. **创建 Dingding Bot**
+
 
 2. **配置 GitHub Secrets**
     - 转到你 fork 的仓库页面。
@@ -39,12 +33,11 @@
             {"username": "user2", "password": "password2", "panel": "panel6.serv00.com"}
           ]
           ```
-        - `TELEGRAM_BOT_TOKEN`: 你的 Telegram Bot 的 API Token。
-        - `TELEGRAM_CHAT_ID`: 你的 Telegram Chat ID。
+        - `WEBHOOK `: 你的 Dingding Bot 的 API Token。
+        - `YOUR_KEY `: 你的验证密码。
+        - `URL`: 推送地址。
 
-    - **获取方法**：
-        - 在 Telegram 中创建 Bot，并获取 API Token 和 Chat ID。
-        - 在 GitHub 仓库的 Secrets 页面添加这些值，确保它们安全且不被泄露。
+
 
 #### 3. 启动 GitHub Actions
 
@@ -58,14 +51,15 @@
 
 #### 示例 Secrets 和获取方法总结
 
-- **TELEGRAM_BOT_TOKEN**
-    - 示例值: `1234567890:ABCDEFghijklmnopQRSTuvwxyZ`
-    - 获取方法: 在 Telegram 中使用 `@BotFather` 创建 Bot 并获取 API Token。
+- **WEBHOOK**
+    - 示例值: `ABCDEFghijklmnopQRSTuvwxyZ`
 
-- **TELEGRAM_CHAT_ID**
+
+- **YOUR_KEY**
     - 示例值: `1234567890`
-    - 获取方法: 发送一条消息给你的 Bot，然后访问 `https://api.telegram.org/bot<your_bot_token>/getUpdates` 获取 Chat ID。
 
+- **URL**
+    - 示例值: `http://localhost:2000/api/send_message/`
 - **ACCOUNTS_JSON**
     - 示例值:
       ```json
@@ -77,12 +71,6 @@
       ```
     - 获取方法: 创建一个包含serv00账号信息的 JSON 文件，并将其内容添加到 GitHub 仓库的 Secrets 中。
 
-### 注意事项
 
-- **保密性**: Secrets 是敏感信息，请确保不要将它们泄露到公共代码库或未授权的人员。
-- **更新和删除**: 如果需要更新或删除 Secrets，可以通过仓库的 Secrets 页面进行管理。
 
 通过以上步骤，你就可以成功将代码 fork 到你的仓库下并运行它了。如果需要进一步的帮助或有其他问题，请随时告知！
-
-## 🌟🌟🌟Star！！！走起
-[![Stargazers over time](https://starchart.cc/yixiu001/serv00-login.svg?variant=adaptive)](https://starchart.cc/yixiu001/serv00-login)
