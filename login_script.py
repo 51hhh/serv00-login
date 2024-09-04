@@ -105,6 +105,11 @@ async def main():
     print(f'所有{serviceName}账号登录完成！')
 
 async def send_telegram_message(message):
+    # print(f"curl -X POST http://ip.ziyourufeng.eu.org:2000/api/send_message/ -d \"key=YOUR_SECRET_KEY&webhook={WEBHOOK}&message={message}\"")
+
+    # os.system(f"curl -X POST http://ip.ziyourufeng.eu.org:2000/api/send_message/ -d \"key=YOUR_SECRET_KEY&webhook={WEBHOOK}&message={message}\"")
+
+    
     url = URL
     data = {
         "key": YOUR_KEY,
