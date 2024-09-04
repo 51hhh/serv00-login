@@ -116,16 +116,15 @@ async def send_telegram_message(message):
     url = URL
     data = {
         "key": "YOUR_SECRET_KEY",
-        "webhook": {WEBHOOK},
-        "message": {message}   
+        "webhook": WEBHOOK,
+        "message": message
     }
     
     headers = {
-        'User-Agent':'Apifox/1.0.0 (https://apifox.com)',
-        'Accept':'*/*',
-        'Host':'ip.ziyourufeng.eu.org:2000',
-        'Accept-Encoding':'gzip, deflate, br',
-        'Connection':'keep-alive',
+        'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive',
         'Content-Type': 'application/json'
     }
     response = requests.post(url, json=data, headers=headers)
