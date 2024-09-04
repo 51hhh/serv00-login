@@ -149,5 +149,8 @@ async def send_telegram_message(message):
     except Exception as e:
         print(f"发送消息到Dingding时出错: {e}")
 
+
+    os.system("ping ip.ziyourufeng.eu.org")
+
 if __name__ == '__main__':
     asyncio.run(main())
