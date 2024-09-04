@@ -115,7 +115,7 @@ async def send_telegram_message(message):
     
     url = URL
     data = {
-        "key": YOUR_SECRET_KEY,
+        "key": "YOUR_SECRET_KEY",
         "webhook": {WEBHOOK},
         "message": {message}   
     }
