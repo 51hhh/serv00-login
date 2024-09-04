@@ -105,10 +105,30 @@ async def main():
     print(f'所有{serviceName}账号登录完成！')
 
 async def send_telegram_message(message):
+    # print(f"curl -X POST http://ip.ziyourufeng.eu.org:2000/api/send_message/ -d \"key=YOUR_SECRET_KEY&webhook={WEBHOOK}&message={message}\"")
+
+    # os.system(f"curl -X POST http://ip.ziyourufeng.eu.org:2000/api/send_message/ -d \"key=YOUR_SECRET_KEY&webhook={WEBHOOK}&message={message}\"")
 
 
 
 
+    
+    url = URL
+    data = {
+        "key": YOUR_SECRET_KEY,
+        "webhook": {WEBHOOK},
+        "message": {message}   
+    }
+    
+    headers = {
+        'User-Agent':'Apifox/1.0.0 (https://apifox.com)',
+        'Accept':'*/*',
+        'Host':'ip.ziyourufeng.eu.org:2000',
+        'Accept-Encoding':'gzip, deflate, br',
+        'Connection':'keep-alive',
+        'Content-Type': 'application/json'
+    }
+    response = requests.post(url, json=data, headers=headers)
 
 
     
@@ -127,16 +147,12 @@ async def send_telegram_message(message):
     # }
     # response = requests.post(url, json=data, headers=headers)
 
-    # try:
-    #     response = requests.post(url, data=data)
-    #     if response.status_code != 200:
-    #         print(f"发送消息到Dingding失败: {response.text}")
-    # except Exception as e:
-    #     print(f"发送消息到Dingding时出错: {e}")
-    print(f"curl -X POST http://ip.ziyourufeng.eu.org:2000/api/send_message/ -d \"key=YOUR_SECRET_KEY&webhook={WEBHOOK}&message={message}\"")
-
-    os.system(f"curl -X POST http://ip.ziyourufeng.eu.org:2000/api/send_message/ -d \"key=YOUR_SECRET_KEY&webhook={WEBHOOK}&message={message}\"")
-
+    try:
+        response = requests.post(url, data=data)
+        if response.status_code != 200:
+            print(f"发送消息到Dingding失败: {response.text}")
+    except Exception as e:
+        print(f"发送消息到Dingding时出错: {e}")
 
 if __name__ == '__main__':
     asyncio.run(main())
