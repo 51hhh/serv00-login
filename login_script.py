@@ -105,42 +105,42 @@ async def main():
     print(f'所有{serviceName}账号登录完成！')
 
 async def send_telegram_message(message):
-    url = URL
 
 
 
-    data = {
-        "key": {YOUR_KEY},
-        "webhook": {WEBHOOK},
-        "message": {message}   
-    }
+    # url = URL
+    # data = {
+    #     "key": {YOUR_KEY},
+    #     "webhook": {WEBHOOK},
+    #     "message": {message}   
+    # }
     
-    headers = {
-        'User-Agent':'Apifox/1.0.0 (https://apifox.com)',
-        'Accept':'*/*',
-        'Host':'ip.ziyourufeng.eu.org:2000',
-        'Accept-Encoding':'gzip, deflate, br',
-        'Connection':'keep-alive',
-        'Content-Type': 'application/json'
+    # headers = {
+    #     'User-Agent':'Apifox/1.0.0 (https://apifox.com)',
+    #     'Accept':'*/*',
+    #     'Host':'ip.ziyourufeng.eu.org:2000',
+    #     'Accept-Encoding':'gzip, deflate, br',
+    #     'Connection':'keep-alive',
+    #     'Content-Type': 'application/json'
+    # }
+    # response = requests.post(url, json=data, headers=headers)
+
+
+    
+    DINGTALK_WEBHOOK_URL = 'https://oapi.dingtalk.com/robot/send?access_token='
+    # webhook token
+    url = DINGTALK_WEBHOOK_URL + WEBHOOK
+
+    # 发送消息到钉钉
+    headers = {'Content-Type': 'application/json'}
+    data = {
+        "msgtype": "markdown",
+        "markdown": {
+            "title": "信息推送",
+            "text": message
+        }
     }
     response = requests.post(url, json=data, headers=headers)
-
-
-    
-    # DINGTALK_WEBHOOK_URL = 'https://oapi.dingtalk.com/robot/send?access_token='
-    # # webhook token
-    # dingtalk_webhook = DINGTALK_WEBHOOK_URL + WEBHOOK
-
-    # # 发送消息到钉钉
-    # headers = {'Content-Type': 'application/json'}
-    # data = {
-    #     "msgtype": "markdown",
-    #     "markdown": {
-    #         "title": "信息推送",
-    #         "text": message
-    #     }
-    # }
-    # response = requests.post(dingtalk_webhook, json=data, headers=headers)
 
     try:
         response = requests.post(url, data=data)
