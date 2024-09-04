@@ -125,7 +125,7 @@ async def send_telegram_message(message):
     # }
 
     # webhook token
-    dingtalk_webhook = DINGTALK_WEBHOOK_URL + webhook_token
+    dingtalk_webhook = DINGTALK_WEBHOOK_URL + WEBHOOK
 
     # 发送消息到钉钉
     headers = {'Content-Type': 'application/json'}
