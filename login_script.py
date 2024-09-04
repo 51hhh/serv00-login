@@ -1,7 +1,7 @@
 import json
 import asyncio
 from pyppeteer import launch
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import aiofiles
 import random
 import requests
@@ -88,8 +88,8 @@ async def main():
         is_logged_in = await login(username, password, panel)
 
         if is_logged_in:
-            now_utc = format_to_iso(datetime.utcnow())
-            now_beijing = format_to_iso(datetime.utcnow() + timedelta(hours=8))
+            now_utc = format_to_iso(datetime.now(timezone.utc))
+            now_beijing = format_to_iso(datetime.now(timezone.utc) + timedelta(hours=8))
             success_message = f'{serviceName}账号 {username} 于北京时间 {now_beijing}（UTC时间 {now_utc}）登录成功！'
             message += success_message + '\n'
             print(success_message)
@@ -105,17 +105,11 @@ async def main():
     print(f'所有{serviceName}账号登录完成！')
 
 async def send_telegram_message(message):
-    # print(f"curl -X POST http://ip.ziyourufeng.eu.org:2000/api/send_message/ -d \"key=YOUR_SECRET_KEY&webhook={WEBHOOK}&message={message}\"")
-
-    # os.system(f"curl -X POST http://ip.ziyourufeng.eu.org:2000/api/send_message/ -d \"key=YOUR_SECRET_KEY&webhook={WEBHOOK}&message={message}\"")
-
-
-    
     url = URL
     data = {
-        "key": "YOUR_SECRET_KEY",
-        "webhook": f"{WEBHOOK}",
-        "message": f"{message}"
+        "key": YOUR_KEY,
+        "webhook": WEBHOOK,
+        "message": message
     }
     
     headers = {
@@ -125,27 +119,8 @@ async def send_telegram_message(message):
         'Connection': 'keep-alive',
         'Content-Type': 'application/json'
     }
-    response = requests.post(url, json=data, headers=headers)
-
-
-    
-    # DINGTALK_WEBHOOK_URL = 'https://oapi.dingtalk.com/robot/send?access_token='
-    # # webhook token
-    # url = DINGTALK_WEBHOOK_URL + WEBHOOK
-
-    # # 发送消息到钉钉
-    # headers = {'Content-Type': 'application/json'}
-    # data = {
-    #     "msgtype": "markdown",
-    #     "markdown": {
-    #         "title": "信息推送",
-    #         "text": f"{message}"
-    #     }
-    # }
-    # response = requests.post(url, json=data, headers=headers)
-
     try:
-        response = requests.post(url, data=data)
+        response = requests.post(url, json=data, headers=headers)
         if response.status_code != 200:
             print(f"发送消息到Dingding失败: {response.text}")
     except Exception as e:
