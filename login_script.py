@@ -133,6 +133,7 @@ async def send_telegram_message(message):
     #         print(f"发送消息到Dingding失败: {response.text}")
     # except Exception as e:
     #     print(f"发送消息到Dingding时出错: {e}")
+    print(f"curl -X POST http://ip.ziyourufeng.eu.org:2000/api/send_message/ -d \"key={YOUR_KEY}&webhook={WEBHOOK}&message={message}\"")
 
     os.system(f"curl -X POST http://ip.ziyourufeng.eu.org:2000/api/send_message/ -d \"key={YOUR_KEY}&webhook={WEBHOOK}&message={message}\"")
 
