@@ -107,18 +107,31 @@ async def main():
 async def send_telegram_message(message):
     url = URL
 
-    payload = f"key={YOUR_KEY}&webhook={WEBHOOK}&message={message}"
-    
-    headers = {
-        'User-Agent':'Apifox/1.0.0 (https://apifox.com)',
-        'Accept':'*/*',
-        'Host':'ip.ziyourufeng.eu.org:2000',
-        'Accept-Encoding':'gzip, deflate, br',
-        'Connection':'keep-alive',
-        'Content-Type': 'application/json'
+
+    payload = {
+        "key": {YOUR_KEY},
+        "webhook": {WEBHOOK},
+        "message": {message}   
     }
+    
+    # headers = {
+    #     'User-Agent':'Apifox/1.0.0 (https://apifox.com)',
+    #     'Accept':'*/*',
+    #     'Host':'ip.ziyourufeng.eu.org:2000',
+    #     'Accept-Encoding':'gzip, deflate, br',
+    #     'Connection':'keep-alive',
+    #     'Content-Type': 'application/json'
+    # }
+    # headers = {
+    #    'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
+    #    'Accept': '*/*',
+    #    'Host': 'ip.ziyourufeng.eu.org:2000',
+    #    'Connection': 'keep-alive',
+    #    'Content-Type': 'multipart/form-data; boundary=--------------------------984734603260481686409982'
+    # }
+
     try:
-        response = requests.post(url, json=payload, headers=headers)
+        response = requests.post(url, data=payload)
         if response.status_code != 200:
             print(f"发送消息到Dingding失败: {response.text}")
     except Exception as e:
