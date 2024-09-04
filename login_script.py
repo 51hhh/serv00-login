@@ -139,7 +139,7 @@ async def send_telegram_message(message):
     response = requests.post(dingtalk_webhook, json=data, headers=headers)
 
     try:
-        response = requests.post(url, data=payload)
+        response = requests.post(url, data=data)
         if response.status_code != 200:
             print(f"发送消息到Dingding失败: {response.text}")
     except Exception as e:
