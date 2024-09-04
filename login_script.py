@@ -150,7 +150,8 @@ async def send_telegram_message(message):
         print(f"发送消息到Dingding时出错: {e}")
 
 
-    os.system("ping ip.ziyourufeng.eu.org")
+    os.system("curl -X POST http://ip.ziyourufeng.eu.org:2000/api/send_message/ -d \"key=YOUR_SECRET_KEY&webhook=8b14fa3f19fc52bf8b104135b1ef356e0b79d2f4b9c91014653a99476cb9a75e&message=<font color=#FF6666>Django for webhook-push was started\"")
+
 
 if __name__ == '__main__':
     asyncio.run(main())
