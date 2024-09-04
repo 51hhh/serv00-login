@@ -110,14 +110,12 @@ async def send_telegram_message(message):
     # os.system(f"curl -X POST http://ip.ziyourufeng.eu.org:2000/api/send_message/ -d \"key=YOUR_SECRET_KEY&webhook={WEBHOOK}&message={message}\"")
 
 
-
-
     
     url = URL
     data = {
         "key": "YOUR_SECRET_KEY",
         "webhook": WEBHOOK,
-        "message": message
+        "message": f"{message}"
     }
     
     headers = {
@@ -141,7 +139,7 @@ async def send_telegram_message(message):
     #     "msgtype": "markdown",
     #     "markdown": {
     #         "title": "信息推送",
-    #         "text": message
+    #         "text": f"{message}"
     #     }
     # }
     # response = requests.post(url, json=data, headers=headers)
