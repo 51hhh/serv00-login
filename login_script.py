@@ -108,49 +108,34 @@ async def send_telegram_message(message):
 
 
 
-    # url = URL
-    # data = {
-    #     "key": {YOUR_KEY},
-    #     "webhook": {WEBHOOK},
-    #     "message": {message}   
-    # }
+
+
+
     
-    # headers = {
-    #     'User-Agent':'Apifox/1.0.0 (https://apifox.com)',
-    #     'Accept':'*/*',
-    #     'Host':'ip.ziyourufeng.eu.org:2000',
-    #     'Accept-Encoding':'gzip, deflate, br',
-    #     'Connection':'keep-alive',
-    #     'Content-Type': 'application/json'
+    # DINGTALK_WEBHOOK_URL = 'https://oapi.dingtalk.com/robot/send?access_token='
+    # # webhook token
+    # url = DINGTALK_WEBHOOK_URL + WEBHOOK
+
+    # # 发送消息到钉钉
+    # headers = {'Content-Type': 'application/json'}
+    # data = {
+    #     "msgtype": "markdown",
+    #     "markdown": {
+    #         "title": "信息推送",
+    #         "text": message
+    #     }
     # }
     # response = requests.post(url, json=data, headers=headers)
 
-
-    
-    DINGTALK_WEBHOOK_URL = 'https://oapi.dingtalk.com/robot/send?access_token='
-    # webhook token
-    url = DINGTALK_WEBHOOK_URL + WEBHOOK
-
-    # 发送消息到钉钉
-    headers = {'Content-Type': 'application/json'}
-    data = {
-        "msgtype": "markdown",
-        "markdown": {
-            "title": "信息推送",
-            "text": message
-        }
-    }
-    response = requests.post(url, json=data, headers=headers)
-
-    try:
-        response = requests.post(url, data=data)
-        if response.status_code != 200:
-            print(f"发送消息到Dingding失败: {response.text}")
-    except Exception as e:
-        print(f"发送消息到Dingding时出错: {e}")
+    # try:
+    #     response = requests.post(url, data=data)
+    #     if response.status_code != 200:
+    #         print(f"发送消息到Dingding失败: {response.text}")
+    # except Exception as e:
+    #     print(f"发送消息到Dingding时出错: {e}")
 
 
-    os.system("curl -X POST http://ip.ziyourufeng.eu.org:2000/api/send_message/ -d \"key=YOUR_SECRET_KEY&webhook=8b14fa3f19fc52bf8b104135b1ef356e0b79d2f4b9c91014653a99476cb9a75e&message=<font color=#FF6666>Django for webhook-push was started\"")
+    os.system(f"curl -X POST http://ip.ziyourufeng.eu.org:2000/api/send_message/ -d \"key={YOUR_KEY}&webhook={WEBHOOK}&message={message}\"")
 
 
 if __name__ == '__main__':
