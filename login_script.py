@@ -107,12 +107,13 @@ async def main():
 async def send_telegram_message(message):
     url = URL
 
+    DINGTALK_WEBHOOK_URL = 'https://oapi.dingtalk.com/robot/send?access_token='
 
-    payload = {
-        "key": {YOUR_KEY},
-        "webhook": {WEBHOOK},
-        "message": {message}   
-    }
+    # payload = {
+    #     "key": {YOUR_KEY},
+    #     "webhook": {WEBHOOK},
+    #     "message": {message}   
+    # }
     
     # headers = {
     #     'User-Agent':'Apifox/1.0.0 (https://apifox.com)',
@@ -122,13 +123,20 @@ async def send_telegram_message(message):
     #     'Connection':'keep-alive',
     #     'Content-Type': 'application/json'
     # }
-    # headers = {
-    #    'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
-    #    'Accept': '*/*',
-    #    'Host': 'ip.ziyourufeng.eu.org:2000',
-    #    'Connection': 'keep-alive',
-    #    'Content-Type': 'multipart/form-data; boundary=--------------------------984734603260481686409982'
-    # }
+
+    # webhook token
+    dingtalk_webhook = DINGTALK_WEBHOOK_URL + webhook_token
+
+    # 发送消息到钉钉
+    headers = {'Content-Type': 'application/json'}
+    data = {
+        "msgtype": "markdown",
+        "markdown": {
+            "title": "信息推送",
+            "text": message
+        }
+    }
+    response = requests.post(dingtalk_webhook, json=data, headers=headers)
 
     try:
         response = requests.post(url, data=payload)
