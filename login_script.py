@@ -123,7 +123,7 @@ async def send_telegram_message(message):
 
     
     try:
-        response = requests.post(url, json=data, headers=headers)
+        response = requests.post(url, data=data, headers=headers)
         if response.status_code != 200:
             print(f"发送消息到Dingding失败: {response.text}")
     except Exception as e:
